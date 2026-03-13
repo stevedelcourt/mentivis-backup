@@ -12,6 +12,7 @@ const navItems = [
   { href: "/creation-etablissements", label: "Lancer mon école" },
   { href: "/solutions", label: "Solutions" },
   { href: "/a-propos", label: "Nous" },
+  { href: "/carrieres", label: "Carrières" },
 ];
 
 const photoHeroPages = ["/", "/offres", "/solutions", "/a-propos"];

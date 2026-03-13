@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="py-20 bg-[#1a1a1a] border-t border-[#333]">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-16">
           <div className="md:col-span-1">
             <Link href="/" className="inline-block group">
               <Image
@@ -53,6 +53,31 @@ export default function Footer() {
                 { href: "/creation-etablissements", label: "Lancer mon école" },
                 { href: "/solutions", label: "Solutions" },
                 { href: "/a-propos", label: "Nous" },
+                { href: "/carrieres", label: "Carrières" },
+                { href: "/jobs", label: "Jobs" },
+              ].map((item) => (
+                <li key={item.href}>
+                  <Link 
+                    href={item.href} 
+                    className="text-white/50 text-sm font-light hover:text-[#cfd4db] transition-colors duration-300 inline-flex items-center gap-2 group"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-white/30 group-hover:bg-[#cfd4db] transition-colors duration-300" />
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="text-white font-medium mb-6">Outils</h4>
+            <ul className="space-y-3">
+              {[
+                { href: "/diagnostic", label: "Score Formation" },
+                { href: "/calculateur-opco", label: "Calculateur OPCO" },
+                { href: "/meeting", label: "Meeting" },
+                { href: "/videos", label: "Vidéos" },
+                { href: "/contact", label: "Contact" },
               ].map((item) => (
                 <li key={item.href}>
                   <Link 
