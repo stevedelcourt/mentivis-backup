@@ -61,25 +61,36 @@ const pillars = [
 
 export default function OffresPage() {
   return (
-    <main className="min-h-screen bg-[#1a1a1a]">
+    <main className="min-h-screen bg-white">
       <Header />
       
-      <section className="pt-32 pb-16 bg-[#2d2d2d]">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-light text-white mb-6">
-            Les offres consulting & déploiement
-          </h1>
-          <p className="text-lg text-[#cfd4db] font-light leading-relaxed">
-            Nous sommes votre partenaire pour transformer et optimiser votre institution éducative, de la stratégie à la mise en œuvre.
-            Nous vous offrons un accompagnement complet et sur mesure pour chaque aspect de votre projet.
-          </p>
+      {/* Hero with Yellow Photo */}
+      <section className="relative h-[60vh] min-h-[400px] pt-24">
+        <Image
+          src="https://mentivis.com/wp-content/uploads/2025/11/theyellowblob.webp"
+          alt="Mentivis Offres"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 pb-16">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h1 className="text-4xl md:text-5xl font-light text-white mb-6">
+              Les offres consulting & déploiement
+            </h1>
+            <p className="text-lg text-white/90 font-light leading-relaxed">
+              Nous sommes votre partenaire pour transformer et optimiser votre institution éducative, de la stratégie à la mise en œuvre.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section className="py-20">
+      {/* Solutions - Light */}
+      <section className="py-20 bg-[#f8f8f8]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-light text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-light text-[#1a1a1a] mb-4">
               Nos solutions. Transformez vos compétences en avantage stratégique
             </h2>
           </div>
@@ -87,15 +98,15 @@ export default function OffresPage() {
             {solutions.map((solution, index) => (
               <div
                 key={index}
-                className="bg-[#2d2d2d] rounded-xl p-8 hover:bg-[#363636] transition-colors"
+                className="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow"
               >
-                <h3 className="text-xl font-medium text-white mb-2">{solution.title}</h3>
-                <p className="text-[#cfd4db] text-sm font-light mb-4">{solution.subtitle}</p>
-                <p className="text-white/70 text-sm font-light mb-6 leading-relaxed">
+                <h3 className="text-xl font-medium text-[#1a1a1a] mb-2">{solution.title}</h3>
+                <p className="text-[#666] text-sm font-light mb-4">{solution.subtitle}</p>
+                <p className="text-[#444] text-sm font-light mb-6 leading-relaxed">
                   {solution.description}
                 </p>
-                <div className="border-t border-[#cfd4db]/20 pt-4">
-                  <p className="text-[#cfd4db] text-xs font-light">{solution.impact}</p>
+                <div className="border-t border-[#ddd] pt-4">
+                  <p className="text-[#1a1a1a] text-xs font-light">{solution.impact}</p>
                 </div>
               </div>
             ))}
@@ -103,40 +114,42 @@ export default function OffresPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-[#2d2d2d]">
+      {/* 4D Quadra - White */}
+      <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-light text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-light text-[#1a1a1a] mb-4">
               Pourquoi 4D Quadra ?
             </h2>
-            <p className="text-[#cfd4db] font-light max-w-2xl mx-auto">
+            <p className="text-[#666] font-light max-w-2xl mx-auto">
               La méthodologie Mentivis 4D Quadra est le fondement de notre approche.
               Elle tire son nom des 4 dimensions essentielles de toute transformation réussie dans l'éducation.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {pillars.map((pillar, index) => (
-              <div key={index} className="text-center p-6">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full border border-[#cfd4db]/30 flex items-center justify-center">
-                  <span className="text-2xl font-light text-[#cfd4db]">{index + 1}</span>
+              <div key={index} className="text-center p-6 bg-[#f8f8f8] rounded-xl">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full border border-[#1a1a1a]/20 flex items-center justify-center">
+                  <span className="text-2xl font-light text-[#1a1a1a]">{index + 1}</span>
                 </div>
-                <h3 className="text-white font-medium mb-2">{pillar.title}</h3>
-                <p className="text-white/60 text-sm font-light">{pillar.description}</p>
+                <h3 className="text-[#1a1a1a] font-medium mb-2">{pillar.title}</h3>
+                <p className="text-[#666] text-sm font-light">{pillar.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20">
+      {/* CTA - Light */}
+      <section className="py-20 bg-[#f8f8f8]">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-light text-white mb-6">Contactez-nous</h2>
-          <p className="text-[#cfd4db] font-light mb-8">
+          <h2 className="text-3xl font-light text-[#1a1a1a] mb-6">Contactez-nous</h2>
+          <p className="text-[#666] font-light mb-8">
             Notre promesse : Un premier échange stratégique offert pour comprendre vos enjeux et identifier les leviers de valeur prioritaires.
           </p>
           <a
             href="/contact"
-            className="inline-block bg-[#cfd4db] text-[#1a1a1a] px-8 py-3 text-sm font-medium rounded-full hover:bg-[#a8aeb8] transition-colors"
+            className="inline-block bg-[#1a1a1a] text-white px-8 py-3 text-sm font-medium rounded-full hover:bg-[#333] transition-colors"
           >
             Planifier une consultation
           </a>

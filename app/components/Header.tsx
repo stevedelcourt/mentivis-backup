@@ -10,7 +10,6 @@ const navItems = [
   { href: "/expertises", label: "Expertises" },
   { href: "/creation-etablissements", label: "Lancer mon école" },
   { href: "/solutions", label: "Solutions" },
-  { href: "/insights", label: "Insights" },
   { href: "/a-propos", label: "Nous" },
 ];
 
@@ -45,9 +44,6 @@ export default function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-4">
-          <span className="text-xs text-[#cfd4db]">FR</span>
-          <span className="text-xs text-white/40">|</span>
-          <a href="#" className="text-xs text-white/60 hover:text-[#cfd4db] transition-colors">EN</a>
           <Link href="/contact" className="bg-[#cfd4db] text-[#1a1a1a] px-5 py-2 text-sm font-medium rounded-full hover:bg-[#a8aeb8] transition-colors">
             Contact
           </Link>

@@ -91,17 +91,18 @@ const values = [
 
 export default function ExpertisesPage() {
   return (
-    <main className="min-h-screen bg-[#1a1a1a]">
+    <main className="min-h-screen bg-white">
       <Header />
       
-      <section className="pt-32 pb-16">
+      {/* Hero - White */}
+      <section className="pt-32 pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl md:text-5xl font-light text-white mb-6">
+              <h1 className="text-4xl md:text-5xl font-light text-[#1a1a1a] mb-6">
                 Mentivis. Moins de slides, plus d'exécution.
               </h1>
-              <p className="text-lg text-[#cfd4db] font-light leading-relaxed">
+              <p className="text-lg text-[#666] font-light leading-relaxed">
                 Chaque établissement fait face à des défis uniques, qu'ils soient stratégiques, organisationnels ou humains. 
                 L'enjeu n'est pas seulement d'y répondre, mais de savoir en tirer parti pour renforcer la performance et la pérennité.
               </p>
@@ -118,18 +119,19 @@ export default function ExpertisesPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-[#2d2d2d]">
+      {/* Capabilities - Light */}
+      <section className="py-20 bg-[#f8f8f8]">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-light text-white mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-light text-[#1a1a1a] mb-12 text-center">
             Nos capacités et compétences
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {capabilities.map((cap, index) => (
-              <div key={index} className="bg-[#1a1a1a] rounded-xl p-8">
-                <h3 className="text-xl font-medium text-white mb-4">{cap.title}</h3>
+              <div key={index} className="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow">
+                <h3 className="text-xl font-medium text-[#1a1a1a] mb-4">{cap.title}</h3>
                 <ul className="space-y-3">
                   {cap.items.map((item, i) => (
-                    <li key={i} className="text-white/70 text-sm font-light leading-relaxed">
+                    <li key={i} className="text-[#666] text-sm font-light leading-relaxed">
                       • {item}
                     </li>
                   ))}
@@ -140,36 +142,38 @@ export default function ExpertisesPage() {
         </div>
       </section>
 
-      <section className="py-20">
+      {/* Values - White */}
+      <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-light text-white mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-light text-[#1a1a1a] mb-12 text-center">
             Notre approche unique
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
-              <div key={index} className="text-center p-6">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full border border-[#cfd4db]/30 flex items-center justify-center">
-                  <span className="text-2xl font-light text-[#cfd4db]">{index + 1}</span>
+              <div key={index} className="text-center p-6 bg-[#f8f8f8] rounded-xl">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full border border-[#1a1a1a]/20 flex items-center justify-center">
+                  <span className="text-2xl font-light text-[#1a1a1a]">{index + 1}</span>
                 </div>
-                <h3 className="text-white font-medium mb-2">{value.title}</h3>
-                <p className="text-white/60 text-sm font-light">{value.description}</p>
+                <h3 className="text-[#1a1a1a] font-medium mb-2">{value.title}</h3>
+                <p className="text-[#666] text-sm font-light">{value.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-[#2d2d2d]">
+      {/* CTA - Light */}
+      <section className="py-20 bg-[#f8f8f8]">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-light text-white mb-6">
+          <h2 className="text-3xl font-light text-[#1a1a1a] mb-6">
             Nous nous engageons à transformer votre vision éducative en une institution d'excellence
           </h2>
-          <p className="text-[#cfd4db] font-light mb-8">
+          <p className="text-[#666] font-light mb-8">
             Prenez rendez-vous pour une consultation stratégique, on s'occupe du reste !
           </p>
           <a
             href="/contact"
-            className="inline-block bg-[#cfd4db] text-[#1a1a1a] px-8 py-3 text-sm font-medium rounded-full hover:bg-[#a8aeb8] transition-colors"
+            className="inline-block bg-[#1a1a1a] text-white px-8 py-3 text-sm font-medium rounded-full hover:bg-[#333] transition-colors"
           >
             Contactez-nous
           </a>

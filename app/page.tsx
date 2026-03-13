@@ -106,7 +106,7 @@ function HeroSlider() {
   }, []);
 
   return (
-    <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
+    <section className="relative h-screen min-h-[600px] overflow-hidden">
       {heroSlides.map((slide, index) => (
         <div
           key={index}
@@ -169,29 +169,29 @@ export default function Home() {
       {/* Hero Slider */}
       <HeroSlider />
 
-      {/* Main Value Prop */}
-      <section className="py-20 bg-[#2d2d2d]">
+      {/* Main Value Prop - White Section */}
+      <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-light text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-light text-[#1a1a1a] mb-6">
             Transformez vos coûts de formation en levier de croissance profitable
           </h2>
-          <p className="text-lg text-[#cfd4db] font-light mb-8 leading-relaxed">
+          <p className="text-lg text-[#555] font-light mb-8 leading-relaxed">
             Talent OS cartographie vos compétences, conçoit vos Campus internes certifiants et mobilise les financements (OPCO, dispositifs publics) pour un impact business mesurable.
           </p>
           <a
-            href="#contact"
-            className="inline-block bg-[#cfd4db] text-[#1a1a1a] px-8 py-3 text-sm font-medium rounded-full hover:bg-[#a8aeb8] transition-colors"
+            href="/contact"
+            className="inline-block bg-[#1a1a1a] text-white px-8 py-3 text-sm font-medium rounded-full hover:bg-[#333] transition-colors"
           >
             Obtenir un diagnostic ROI gratuit
           </a>
         </div>
       </section>
 
-      {/* Solutions */}
-      <section id="solutions" className="py-20">
+      {/* Solutions - Light Background */}
+      <section id="solutions" className="py-24 bg-[#f8f8f8]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-light text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-light text-[#1a1a1a] mb-4">
               Nos solutions. Transformez vos compétences en avantage stratégique
             </h2>
           </div>
@@ -199,15 +199,15 @@ export default function Home() {
             {solutions.map((solution, index) => (
               <div
                 key={index}
-                className="bg-[#2d2d2d] rounded-xl p-8 hover:bg-[#363636] transition-colors"
+                className="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow"
               >
-                <h3 className="text-xl font-medium text-white mb-2">{solution.title}</h3>
-                <p className="text-[#cfd4db] text-sm font-light mb-4">{solution.subtitle}</p>
-                <p className="text-white/70 text-sm font-light mb-6 leading-relaxed">
+                <h3 className="text-xl font-medium text-[#1a1a1a] mb-2">{solution.title}</h3>
+                <p className="text-[#666] text-sm font-light mb-4">{solution.subtitle}</p>
+                <p className="text-[#444] text-sm font-light mb-6 leading-relaxed">
                   {solution.description}
                 </p>
-                <div className="border-t border-[#cfd4db]/20 pt-4">
-                  <p className="text-[#cfd4db] text-xs font-light">{solution.impact}</p>
+                <div className="border-t border-[#ddd] pt-4">
+                  <p className="text-[#1a1a1a] text-xs font-light">{solution.impact}</p>
                 </div>
               </div>
             ))}
@@ -215,61 +215,61 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4D Quadra */}
-      <section className="py-20 bg-[#2d2d2d]">
+      {/* 4D Quadra - White Section */}
+      <section className="py-24 bg-white">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-light text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-light text-[#1a1a1a] mb-4">
               Pourquoi 4D Quadra ?
             </h2>
-            <p className="text-[#cfd4db] font-light max-w-2xl mx-auto">
+            <p className="text-[#666] font-light max-w-2xl mx-auto">
               La méthodologie Mentivis 4D Quadra est le fondement de notre approche.
               Elle tire son nom des 4 dimensions essentielles de toute transformation réussie dans l'éducation.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {pillars.map((pillar, index) => (
-              <div key={index} className="text-center p-6">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full border border-[#cfd4db]/30 flex items-center justify-center">
-                  <span className="text-2xl font-light text-[#cfd4db]">{index + 1}</span>
+              <div key={index} className="text-center p-6 bg-[#f8f8f8] rounded-xl">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full border border-[#1a1a1a]/20 flex items-center justify-center">
+                  <span className="text-2xl font-light text-[#1a1a1a]">{index + 1}</span>
                 </div>
-                <h3 className="text-white font-medium mb-2">{pillar.title}</h3>
-                <p className="text-white/60 text-sm font-light">{pillar.description}</p>
+                <h3 className="text-[#1a1a1a] font-medium mb-2">{pillar.title}</h3>
+                <p className="text-[#666] text-sm font-light">{pillar.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-16 bg-[#1a1a1a]">
+      {/* Stats - Light Section */}
+      <section className="py-16 bg-[#f8f8f8]">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-[#cfd4db] font-light mb-4">
+          <p className="text-[#1a1a1a] font-light mb-4">
             Plus de 40 projets stratégiques, organisationnels et pédagogiques en 2025
           </p>
           <a
-            href="#contact"
-            className="text-white hover:text-[#cfd4db] transition-colors underline underline-offset-4"
+            href="/a-propos"
+            className="text-[#1a1a1a] hover:text-[#666] transition-colors underline underline-offset-4"
           >
             Pourquoi Mentivis
           </a>
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section id="contact" className="py-20 bg-[#2d2d2d]">
+      {/* Contact Form - White Section */}
+      <section id="contact" className="py-20 bg-white">
         <div className="max-w-2xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-light text-[#1a1a1a] mb-4">
               Contactez-nous
             </h2>
-            <p className="text-[#cfd4db] font-light">
+            <p className="text-[#666] font-light">
               Envie de parler avec nous ? Nous sommes là pour vous écouter.
             </p>
           </div>
           <form className="space-y-6">
             <div>
-              <label htmlFor="name" className="block text-sm text-white/70 mb-2 font-light">
+              <label htmlFor="name" className="block text-sm text-[#666] mb-2 font-light">
                 Nom
               </label>
               <input
@@ -277,11 +277,11 @@ export default function Home() {
                 id="name"
                 name="name"
                 required
-                className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#cfd4db]/20 rounded-lg text-white focus:outline-none focus:border-[#cfd4db] transition-colors font-light"
+                className="w-full px-4 py-3 bg-[#f8f8f8] border border-[#ddd] rounded-lg text-[#1a1a1a] focus:outline-none focus:border-[#1a1a1a] transition-colors font-light"
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm text-white/70 mb-2 font-light">
+              <label htmlFor="email" className="block text-sm text-[#666] mb-2 font-light">
                 Email
               </label>
               <input
@@ -289,11 +289,11 @@ export default function Home() {
                 id="email"
                 name="email"
                 required
-                className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#cfd4db]/20 rounded-lg text-white focus:outline-none focus:border-[#cfd4db] transition-colors font-light"
+                className="w-full px-4 py-3 bg-[#f8f8f8] border border-[#ddd] rounded-lg text-[#1a1a1a] focus:outline-none focus:border-[#1a1a1a] transition-colors font-light"
               />
             </div>
             <div>
-              <label htmlFor="message" className="block text-sm text-white/70 mb-2 font-light">
+              <label htmlFor="message" className="block text-sm text-[#666] mb-2 font-light">
                 Message
               </label>
               <textarea
@@ -301,12 +301,12 @@ export default function Home() {
                 name="message"
                 rows={5}
                 required
-                className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#cfd4db]/20 rounded-lg text-white focus:outline-none focus:border-[#cfd4db] transition-colors font-light resize-none"
+                className="w-full px-4 py-3 bg-[#f8f8f8] border border-[#ddd] rounded-lg text-[#1a1a1a] focus:outline-none focus:border-[#1a1a1a] transition-colors font-light resize-none"
               />
             </div>
             <button
               type="submit"
-              className="w-full bg-[#cfd4db] text-[#1a1a1a] py-3 rounded-lg font-medium hover:bg-[#a8aeb8] transition-colors"
+              className="w-full bg-[#1a1a1a] text-white py-3 rounded-lg font-medium hover:bg-[#333] transition-colors"
             >
               Envoyer
             </button>

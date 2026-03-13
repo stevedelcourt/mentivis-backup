@@ -8,25 +8,27 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-[#1a1a1a]">
+    <main className="min-h-screen bg-white">
       <Header />
       
-      <section className="pt-32 pb-16 bg-[#2d2d2d]">
+      {/* Hero - White */}
+      <section className="pt-32 pb-16 bg-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-light text-white mb-6">
+          <h1 className="text-4xl md:text-5xl font-light text-[#1a1a1a] mb-6">
             Contactez-nous
           </h1>
-          <p className="text-lg text-[#cfd4db] font-light">
+          <p className="text-lg text-[#666] font-light">
             Envie de parler avec nous ? Nous sommes là pour vous écouter et nous vous répondrons dans les plus brefs délais !
           </p>
         </div>
       </section>
 
-      <section className="py-20">
+      {/* Form - Light */}
+      <section className="py-20 bg-[#f8f8f8]">
         <div className="max-w-2xl mx-auto px-6">
           <form className="space-y-6">
             <div>
-              <label htmlFor="name" className="block text-sm text-white/70 mb-2 font-light">
+              <label htmlFor="name" className="block text-sm text-[#666] mb-2 font-light">
                 Nom
               </label>
               <input
@@ -34,11 +36,11 @@ export default function ContactPage() {
                 id="name"
                 name="name"
                 required
-                className="w-full px-4 py-3 bg-[#2d2d2d] border border-[#cfd4db]/20 rounded-lg text-white focus:outline-none focus:border-[#cfd4db] transition-colors font-light"
+                className="w-full px-4 py-3 bg-white border border-[#ddd] rounded-lg text-[#1a1a1a] focus:outline-none focus:border-[#1a1a1a] transition-colors font-light"
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm text-white/70 mb-2 font-light">
+              <label htmlFor="email" className="block text-sm text-[#666] mb-2 font-light">
                 Email
               </label>
               <input
@@ -46,11 +48,11 @@ export default function ContactPage() {
                 id="email"
                 name="email"
                 required
-                className="w-full px-4 py-3 bg-[#2d2d2d] border border-[#cfd4db]/20 rounded-lg text-white focus:outline-none focus:border-[#cfd4db] transition-colors font-light"
+                className="w-full px-4 py-3 bg-white border border-[#ddd] rounded-lg text-[#1a1a1a] focus:outline-none focus:border-[#1a1a1a] transition-colors font-light"
               />
             </div>
             <div>
-              <label htmlFor="message" className="block text-sm text-white/70 mb-2 font-light">
+              <label htmlFor="message" className="block text-sm text-[#666] mb-2 font-light">
                 Message
               </label>
               <textarea
@@ -58,12 +60,12 @@ export default function ContactPage() {
                 name="message"
                 rows={6}
                 required
-                className="w-full px-4 py-3 bg-[#2d2d2d] border border-[#cfd4db]/20 rounded-lg text-white focus:outline-none focus:border-[#cfd4db] transition-colors font-light resize-none"
+                className="w-full px-4 py-3 bg-white border border-[#ddd] rounded-lg text-[#1a1a1a] focus:outline-none focus:border-[#1a1a1a] transition-colors font-light resize-none"
               />
             </div>
             <button
               type="submit"
-              className="w-full bg-[#cfd4db] text-[#1a1a1a] py-3 rounded-lg font-medium hover:bg-[#a8aeb8] transition-colors"
+              className="w-full bg-[#1a1a1a] text-white py-3 rounded-lg font-medium hover:bg-[#333] transition-colors"
             >
               Envoyer
             </button>
@@ -71,20 +73,21 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-[#2d2d2d]">
+      {/* Contact Info - White */}
+      <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-white font-medium mb-4">Contact</h3>
-              <p className="text-white/60 text-sm font-light">
-                <a href="mailto:contact@mentivis.com" className="hover:text-[#cfd4db] transition-colors">
+              <h3 className="text-[#1a1a1a] font-medium mb-4">Contact</h3>
+              <p className="text-[#666] text-sm font-light">
+                <a href="mailto:contact@mentivis.com" className="hover:text-[#1a1a1a] transition-colors">
                   contact@mentivis.com
                 </a>
               </p>
             </div>
             <div>
-              <h3 className="text-white font-medium mb-4">Siège social</h3>
-              <p className="text-white/60 text-sm font-light">
+              <h3 className="text-[#1a1a1a] font-medium mb-4">Siège social</h3>
+              <p className="text-[#666] text-sm font-light">
                 60 Rue François 1er<br />
                 75008 Paris
               </p>

@@ -59,31 +59,42 @@ const commitments = [
 
 export default function SolutionsPage() {
   return (
-    <main className="min-h-screen bg-[#1a1a1a]">
+    <main className="min-h-screen bg-white">
       <Header />
       
-      <section className="pt-32 pb-16">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-light text-white mb-6">
-            La transformation digitale, ça se pilote. Ça s'ingénie. Ça dure.
-          </h1>
-          <p className="text-lg text-[#cfd4db] font-light leading-relaxed">
-            Nous accompagnons les organisations françaises dans leurs mutations les plus critiques de la stratégie à la mise en production.
-            Une équipe de conseil et d'ingénierie senior, française de bout en bout, qui reste après la livraison.
-          </p>
+      {/* Hero with Blue Photo */}
+      <section className="relative h-[60vh] min-h-[400px] pt-24">
+        <Image
+          src="https://mentivis.com/wp-content/uploads/2026/03/menti4.webp"
+          alt="Mentivis Solutions"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 pb-16">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h1 className="text-4xl md:text-5xl font-light text-white mb-6">
+              La transformation digitale, ça se pilote. Ça s'ingénie. Ça dure.
+            </h1>
+            <p className="text-lg text-white/90 font-light leading-relaxed">
+              Nous accompagnons les organisations françaises dans leurs mutations les plus critiques de la stratégie à la mise en production.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section className="py-20 bg-[#2d2d2d]">
+      {/* Services - Light */}
+      <section className="py-20 bg-[#f8f8f8]">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-light text-white mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-light text-[#1a1a1a] mb-12 text-center">
             Nous connaissons votre terrain
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
-              <div key={index} className="bg-[#1a1a1a] rounded-xl p-8 hover:bg-[#363636] transition-colors">
-                <h3 className="text-xl font-medium text-white mb-4">{service.title}</h3>
-                <p className="text-white/70 text-sm font-light leading-relaxed">
+              <div key={index} className="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow">
+                <h3 className="text-xl font-medium text-[#1a1a1a] mb-4">{service.title}</h3>
+                <p className="text-[#666] text-sm font-light leading-relaxed">
                   {service.description}
                 </p>
               </div>
@@ -92,16 +103,17 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      <section className="py-20">
+      {/* Commitments - White */}
+      <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-light text-white mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-light text-[#1a1a1a] mb-12 text-center">
             Nos engagements, ce sur quoi vous pouvez compter
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {commitments.map((commitment, index) => (
-              <div key={index} className="bg-[#2d2d2d] rounded-xl p-8">
-                <h3 className="text-xl font-medium text-white mb-3">{commitment.title}</h3>
-                <p className="text-white/70 text-sm font-light leading-relaxed">
+              <div key={index} className="bg-[#f8f8f8] rounded-xl p-8">
+                <h3 className="text-xl font-medium text-[#1a1a1a] mb-3">{commitment.title}</h3>
+                <p className="text-[#666] text-sm font-light leading-relaxed">
                   {commitment.description}
                 </p>
               </div>
@@ -110,48 +122,50 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-[#2d2d2d]">
+      {/* Process - Light */}
+      <section className="py-20 bg-[#f8f8f8]">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-light text-white mb-6">
+          <h2 className="text-3xl font-light text-[#1a1a1a] mb-12">
             De la stratégie à la production, sans rupture entre les deux
           </h2>
           <div className="space-y-8 text-left">
             <div className="flex gap-6">
-              <div className="w-12 h-12 flex-shrink-0 rounded-full bg-[#cfd4db] text-[#1a1a1a] flex items-center justify-center font-medium">
+              <div className="w-12 h-12 flex-shrink-0 rounded-full bg-[#1a1a1a] text-white flex items-center justify-center font-medium">
                 01
               </div>
               <div>
-                <h3 className="text-white font-medium mb-2">Audit et cadrage stratégique</h3>
-                <p className="text-white/70 text-sm font-light">Nous commençons par écouter et comprendre votre contexte, vos contraintes réglementaires, vos priorités métiers et vos risques réels.</p>
+                <h3 className="text-[#1a1a1a] font-medium mb-2">Audit et cadrage stratégique</h3>
+                <p className="text-[#666] text-sm font-light">Nous commençons par écouter et comprendre votre contexte, vos contraintes réglementaires, vos priorités métiers et vos risques réels.</p>
               </div>
             </div>
             <div className="flex gap-6">
-              <div className="w-12 h-12 flex-shrink-0 rounded-full bg-[#cfd4db] text-[#1a1a1a] flex items-center justify-center font-medium">
+              <div className="w-12 h-12 flex-shrink-0 rounded-full bg-[#1a1a1a] text-white flex items-center justify-center font-medium">
                 02
               </div>
               <div>
-                <h3 className="text-white font-medium mb-2">Conseil et sprints</h3>
-                <p className="text-white/70 text-sm font-light">Nos consultants et ingénieurs travaillent ensemble, pas en séquence. Vous voyez le produit évoluer à chaque sprint.</p>
+                <h3 className="text-[#1a1a1a] font-medium mb-2">Conseil et sprints</h3>
+                <p className="text-[#666] text-sm font-light">Nos consultants et ingénieurs travaillent ensemble, pas en séquence. Vous voyez le produit évoluer à chaque sprint.</p>
               </div>
             </div>
             <div className="flex gap-6">
-              <div className="w-12 h-12 flex-shrink-0 rounded-full bg-[#cfd4db] text-[#1a1a1a] flex items-center justify-center font-medium">
+              <div className="w-12 h-12 flex-shrink-0 rounded-full bg-[#1a1a1a] text-white flex items-center justify-center font-medium">
                 03
               </div>
               <div>
-                <h3 className="text-white font-medium mb-2">Déploiement, transfert et support</h3>
-                <p className="text-white/70 text-sm font-light">Déploiement sur infrastructure française. Monitoring proactif. Formation de vos équipes. Transfert de compétences documenté.</p>
+                <h3 className="text-[#1a1a1a] font-medium mb-2">Déploiement, transfert et support</h3>
+                <p className="text-[#666] text-sm font-light">Déploiement sur infrastructure française. Monitoring proactif. Formation de vos équipes. Transfert de compétences documenté.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-20">
+      {/* CTA - White */}
+      <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <a
             href="/contact"
-            className="inline-block bg-[#cfd4db] text-[#1a1a1a] px-8 py-3 text-sm font-medium rounded-full hover:bg-[#a8aeb8] transition-colors"
+            className="inline-block bg-[#1a1a1a] text-white px-8 py-3 text-sm font-medium rounded-full hover:bg-[#333] transition-colors"
           >
             Parlons de votre projet
           </a>

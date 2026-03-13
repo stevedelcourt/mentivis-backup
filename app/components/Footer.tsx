@@ -26,7 +26,6 @@ export default function Footer() {
               <li><Link href="/expertises" className="text-white/60 text-sm font-light hover:text-[#cfd4db] transition-colors">Expertises</Link></li>
               <li><Link href="/creation-etablissements" className="text-white/60 text-sm font-light hover:text-[#cfd4db] transition-colors">Lancer mon école</Link></li>
               <li><Link href="/solutions" className="text-white/60 text-sm font-light hover:text-[#cfd4db] transition-colors">Solutions</Link></li>
-              <li><Link href="/insights" className="text-white/60 text-sm font-light hover:text-[#cfd4db] transition-colors">Insights</Link></li>
               <li><Link href="/a-propos" className="text-white/60 text-sm font-light hover:text-[#cfd4db] transition-colors">Nous</Link></li>
             </ul>
           </div>
