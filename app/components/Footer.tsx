@@ -108,12 +108,12 @@ export default function Footer() {
             © 2026 Mentivis. Tous droits réservés.
           </p>
           <div className="flex gap-8">
-            <a href="#" className="text-white/30 text-xs font-light hover:text-white/60 transition-colors duration-300">
+            <Link href="/mentions-legales" className="text-white/30 text-xs font-light hover:text-white/60 transition-colors duration-300">
               Mentions légales
-            </a>
-            <a href="#" className="text-white/30 text-xs font-light hover:text-white/60 transition-colors duration-300">
+            </Link>
+            <Link href="/confidentialite" className="text-white/30 text-xs font-light hover:text-white/60 transition-colors duration-300">
               Confidentialité
-            </a>
+            </Link>
           </div>
         </div>
       </div>

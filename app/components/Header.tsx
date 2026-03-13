@@ -14,10 +14,14 @@ const navItems = [
   { href: "/a-propos", label: "Nous" },
 ];
 
+const whiteHeaderPages = ["/expertises", "/creation-etablissements", "/contact", "/mentions-legales", "/confidentialite"];
+
 export default function Header() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  const hasWhiteBackground = whiteHeaderPages.includes(pathname);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,10 +35,12 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
+  const isAlwaysWhite = hasWhiteBackground || isScrolled;
+
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
+        isAlwaysWhite 
           ? "bg-white/95 backdrop-blur-md shadow-lg py-3" 
           : "bg-transparent py-4"
       }`}
@@ -50,9 +56,7 @@ export default function Header() {
             alt="Mentivis"
             width={120}
             height={40}
-            className={`h-10 w-auto transition-all duration-300 ${
-              isScrolled ? "brightness-0" : "brightness-0 invert"
-            } group-hover:scale-105`}
+            className="h-10 w-auto brightness-0 group-hover:scale-105 transition-transform duration-300"
           />
         </Link>
         
@@ -62,11 +66,11 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className={`relative text-sm font-light transition-colors duration-300 hover:text-[#1a1a1a] ${
-                isScrolled 
+              className={`relative text-sm font-light transition-colors duration-300 hover:opacity-100 ${
+                isAlwaysWhite 
                   ? "text-[#1a1a1a]/70 hover:text-[#1a1a1a]" 
                   : "text-white/80 hover:text-white"
-              } ${pathname === item.href ? (isScrolled ? "text-[#1a1a1a]" : "text-white") : ""}`}
+              } ${pathname === item.href ? (isAlwaysWhite ? "text-[#1a1a1a]" : "text-white") : ""} ${!isAlwaysWhite ? "opacity-100" : ""}`}
             >
               {item.label}
               <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${
@@ -79,11 +83,7 @@ export default function Header() {
         <div className="flex items-center gap-4">
           <Link 
             href="/contact" 
-            className={`px-6 py-2.5 text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 ${
-              isScrolled
-                ? "bg-[#1a1a1a] text-white hover:bg-[#333]"
-                : "bg-white text-[#1a1a1a] hover:bg-[#f0f0f0]"
-            }`}
+            className="px-6 py-2.5 text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 bg-[#1a1a1a] text-white hover:bg-[#333]"
           >
             Contact
           </Link>
@@ -96,13 +96,13 @@ export default function Header() {
           >
             <div className="w-6 h-5 relative flex flex-col justify-between">
               <span className={`w-full h-0.5 rounded-full transition-all duration-300 ${
-                isScrolled ? "bg-[#1a1a1a]" : "bg-white"
+                isAlwaysWhite ? "bg-[#1a1a1a]" : "bg-white"
               } ${isMobileMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
               <span className={`w-full h-0.5 rounded-full transition-all duration-300 ${
-                isScrolled ? "bg-[#1a1a1a]" : "bg-white"
+                isAlwaysWhite ? "bg-[#1a1a1a]" : "bg-white"
               } ${isMobileMenuOpen ? "opacity-0" : ""}`} />
               <span className={`w-full h-0.5 rounded-full transition-all duration-300 ${
-                isScrolled ? "bg-[#1a1a1a]" : "bg-white"
+                isAlwaysWhite ? "bg-[#1a1a1a]" : "bg-white"
               } ${isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
             </div>
           </button>
