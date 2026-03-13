@@ -43,55 +43,115 @@ const heroSlides = [
   },
 ];
 
+const IconTarget = () => (
+  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <circle cx="12" cy="12" r="10" />
+    <circle cx="12" cy="12" r="6" />
+    <circle cx="12" cy="12" r="2" />
+    <line x1="12" y1="2" x2="12" y2="4" />
+    <line x1="12" y1="20" x2="12" y2="22" />
+    <line x1="2" y1="12" x2="4" y2="12" />
+    <line x1="20" y1="12" x2="22" y2="12" />
+  </svg>
+);
+
+const IconClipboard = () => (
+  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <rect x="8" y="2" width="8" height="4" rx="1" />
+    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+    <line x1="9" y1="10" x2="15" y2="10" />
+    <line x1="9" y1="14" x2="15" y2="14" />
+    <line x1="9" y1="18" x2="13" y2="18" />
+  </svg>
+);
+
+const IconArrows = () => (
+  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M7 16V4M7 4L3 8M7 4L11 8" />
+    <path d="M17 8v12m0 0l4-4m-4 4l-4-4" />
+  </svg>
+);
+
+const IconBuilding = () => (
+  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4M9 9v.01M9 12v.01M9 15v.01M9 18v.01" />
+    <rect x="9" y="3" width="6" height="4" rx="1" />
+  </svg>
+);
+
+const IconChart = () => (
+  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M12 20V10M18 20V4M6 20v-4" strokeLinecap="round" />
+  </svg>
+);
+
+const IconStethoscope = () => (
+  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+    <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+  </svg>
+);
+
+const IconBriefcase = () => (
+  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <rect x="2" y="7" width="20" height="14" rx="2" />
+    <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+    <line x1="12" y1="12" x2="12" y2="16" />
+    <line x1="10" y1="14" x2="14" y2="14" />
+  </svg>
+);
+
 const solutions = [
   {
     title: "TALENT OS",
     subtitle: "Pilotez par les compétences, pas par l'organigramme",
     description: "Les fiches de poste figées dans le marbre. Les talents cachés qui s'ignorent. Les compétences critiques que vous ne pouvez pas recruter.",
     impact: "–40% de délais de recrutement • Mobilité interne multipliée par 3 • Zéro dépendance aux pénuries de talents",
-    icon: "🎯",
+    icon: IconTarget,
   },
   {
     title: "SKILLS FACTORY",
     subtitle: "Un référentiel vivant qui parle à toute l'entreprise",
     description: "Le RH dit « autonomie », le manager dit « débrouillardise », le candidat comprend « démerde-toi ». Résultat : incompréhensions, mauvais recrutements.",
     impact: "Un seul référentiel • Utilisé partout • Toujours à jour • Enfin compris par tous",
-    icon: "📋",
+    icon: IconClipboard,
   },
   {
     title: "TRANSITION WORKFORCE",
     subtitle: "Transformez sans casse. C'est possible.",
     description: "Fermeture de site. Digitalisation brutale. Réorganisation. Le mot « plan social » plane dans les couloirs.",
     impact: "90% de reclassement interne • Climat social préservé • Transformation accélérée de 6 mois",
-    icon: "🔄",
+    icon: IconArrows,
   },
   {
     title: "CORPORATE CAMPUS",
     subtitle: "Votre campus interne, clé en main",
     description: "Vous formez beaucoup mais ça part dans tous les sens. Vous rêvevez d'avoir votre propre école.",
     impact: "Une machine à produire les talents dont vous avez besoin • 100% adaptés à votre culture",
-    icon: "🏫",
+    icon: IconBuilding,
   },
   {
     title: "ROI FORMATION",
     subtitle: "Et si votre formation générait du cash ?",
     description: "Votre académie coûte cher. Très cher. Les budgets formation explosent. Le COMEX vous regarde bizarrement.",
     impact: "Formation autofinancée voire profitable • Budget formation multiplié par 2 sans demander un euro de plus",
-    icon: "💰",
+    icon: IconChart,
   },
   {
     title: "EDUCATION RESCUE",
     subtitle: "Redressement d'école : du rouge au vert",
     description: "Inscriptions en chute libre. Réputation ternie. Équilibre financier fragile.",
     impact: "Augmentations d'inscriptions significatives • Rentabilité restaurée • Diplômés qui trouvent un job",
-    icon: "🏥",
+    icon: IconStethoscope,
   },
   {
     title: "INVESTOR EDUCATION LAB",
     subtitle: "Investir dans l'éducation en connaissance de cause",
     description: "Cette école a du potentiel. Mais est-ce que le business model tient la route ? Les diplômes ont-ils de la valeur ?",
     impact: "Décision éclairée • Risques maîtrisés • Plan d'action jour 1 prêt",
-    icon: "📊",
+    icon: IconBriefcase,
   },
 ];
 
@@ -168,18 +228,10 @@ function HeroSlider() {
             <p className="text-xl md:text-2xl text-white/90 font-light max-w-2xl">
               {slide.subtitle}
             </p>
-            <Link 
-              href="/contact" 
-              className="mt-8 inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/30 text-white px-8 py-3 rounded-full hover:bg-white hover:text-[#1a1a1a] transition-all duration-300"
-            >
-              Découvrir
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </Link>
           </div>
         </div>
       ))}
       
-      {/* Navigation Dots */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10">
         {heroSlides.map((_, index) => (
           <button
@@ -195,7 +247,6 @@ function HeroSlider() {
         ))}
       </div>
 
-      {/* Arrow Navigation */}
       <button
         onClick={() => setCurrent((current - 1 + heroSlides.length) % heroSlides.length)}
         className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 z-10"
@@ -215,7 +266,6 @@ function HeroSlider() {
         </svg>
       </button>
 
-      {/* Scroll Indicator */}
       <div className="absolute bottom-8 right-8 flex flex-col items-center gap-2 text-white/50 animate-bounce">
         <span className="text-xs tracking-widest uppercase">Scroll</span>
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -231,10 +281,8 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <Header />
 
-      {/* Hero Slider */}
       <HeroSlider />
 
-      {/* Main Value Prop - White Section */}
       <AnimatedSection className="py-24 bg-white" delay={100}>
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-light text-[#1a1a1a] mb-8 leading-tight">
@@ -260,7 +308,6 @@ export default function Home() {
         </div>
       </AnimatedSection>
 
-      {/* Solutions - Light Background */}
       <AnimatedSection className="py-24 bg-[#f8f8f8]" delay={200}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -272,37 +319,39 @@ export default function Home() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {solutions.map((solution, index) => (
-              <div
-                key={index}
-                className="group bg-white rounded-2xl p-8 card-hover cursor-pointer border border-transparent hover:border-[#cfd4db]/30"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                    {solution.icon}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-medium text-[#1a1a1a] mb-2 group-hover:text-[#1a1a1a] transition-colors">
-                      {solution.title}
-                    </h3>
-                    <p className="text-[#666] text-sm font-light mb-3">{solution.subtitle}</p>
-                    <p className="text-[#444] text-sm font-light mb-4 leading-relaxed">
-                      {solution.description}
-                    </p>
-                    <div className="border-t border-[#eee] pt-4">
-                      <p className="text-[#1a1a1a] text-xs font-light group-hover:translate-x-1 transition-transform">
-                        {solution.impact}
+            {solutions.map((solution, index) => {
+              const Icon = solution.icon;
+              return (
+                <div
+                  key={index}
+                  className="group bg-white rounded-2xl p-8 card-hover cursor-pointer border border-transparent hover:border-[#cfd4db]/30"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="text-[#1a1a1a] mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <Icon />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-medium text-[#1a1a1a] mb-2 group-hover:text-[#1a1a1a] transition-colors">
+                        {solution.title}
+                      </h3>
+                      <p className="text-[#666] text-sm font-light mb-3">{solution.subtitle}</p>
+                      <p className="text-[#444] text-sm font-light mb-4 leading-relaxed">
+                        {solution.description}
                       </p>
+                      <div className="border-t border-[#eee] pt-4">
+                        <p className="text-[#1a1a1a] text-xs font-light group-hover:translate-x-1 transition-transform">
+                          {solution.impact}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </AnimatedSection>
 
-      {/* 4D Quadra - White Section */}
       <AnimatedSection className="py-24 bg-white" delay={300}>
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -331,7 +380,6 @@ export default function Home() {
         </div>
       </AnimatedSection>
 
-      {/* Stats - Light Section */}
       <AnimatedSection className="py-20 bg-[#f8f8f8]" delay={400}>
         <div className="max-w-4xl mx-auto px-6 text-center">
           <p className="text-2xl text-[#1a1a1a] font-light mb-6">
@@ -342,14 +390,13 @@ export default function Home() {
             className="inline-flex items-center gap-2 text-[#1a1a1a] hover:text-[#666] transition-colors link-underline"
           >
             Pourquoi Mentivis
-            <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>
         </div>
       </AnimatedSection>
 
-      {/* CTA Banner */}
       <AnimatedSection className="py-24 bg-[#1a1a1a]" delay={500}>
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-light text-white mb-6">
@@ -370,7 +417,6 @@ export default function Home() {
         </div>
       </AnimatedSection>
 
-      {/* Contact Form */}
       <AnimatedSection className="py-24 bg-white" delay={600}>
         <div className="max-w-2xl mx-auto px-6">
           <div className="text-center mb-12">

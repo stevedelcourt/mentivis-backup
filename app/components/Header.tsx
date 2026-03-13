@@ -26,6 +26,7 @@ export default function Header() {
   const hasWhiteBg = whiteBgPages.includes(pathname);
   const isAlwaysWhite = hasWhiteBg || isScrolled;
   const showWhiteLogo = hasPhotoHero && !isScrolled;
+  const menuTextWhite = !isAlwaysWhite && showWhiteLogo;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,10 +72,10 @@ export default function Header() {
               key={item.href}
               href={item.href}
               className={`relative text-sm font-light transition-colors duration-300 hover:opacity-100 ${
-                isAlwaysWhite || showWhiteLogo
-                  ? "text-[#1a1a1a]/70 hover:text-[#1a1a1a]" 
-                  : "text-white/80 hover:text-white"
-              } ${pathname === item.href ? (isAlwaysWhite || showWhiteLogo ? "text-[#1a1a1a]" : "text-white") : ""}`}
+                menuTextWhite
+                  ? "text-white/80 hover:text-white" 
+                  : "text-[#1a1a1a]/70 hover:text-[#1a1a1a]"
+              } ${pathname === item.href ? (menuTextWhite ? "text-white" : "text-[#1a1a1a]") : ""}`}
             >
               {item.label}
               <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${
@@ -100,13 +101,13 @@ export default function Header() {
           >
             <div className="w-6 h-5 relative flex flex-col justify-between">
               <span className={`w-full h-0.5 rounded-full transition-all duration-300 ${
-                isAlwaysWhite || showWhiteLogo ? "bg-[#1a1a1a]" : "bg-white"
+                menuTextWhite ? "bg-white" : "bg-[#1a1a1a]"
               } ${isMobileMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
               <span className={`w-full h-0.5 rounded-full transition-all duration-300 ${
-                isAlwaysWhite || showWhiteLogo ? "bg-[#1a1a1a]" : "bg-white"
+                menuTextWhite ? "bg-white" : "bg-[#1a1a1a]"
               } ${isMobileMenuOpen ? "opacity-0" : ""}`} />
               <span className={`w-full h-0.5 rounded-full transition-all duration-300 ${
-                isAlwaysWhite || showWhiteLogo ? "bg-[#1a1a1a]" : "bg-white"
+                menuTextWhite ? "bg-white" : "bg-[#1a1a1a]"
               } ${isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
             </div>
           </button>
