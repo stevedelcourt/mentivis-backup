@@ -219,20 +219,27 @@ function HeroSlider() {
             priority={index === 0}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/30" />
-          <div className={`absolute inset-0 flex flex-col justify-center items-center text-center px-6 transition-all duration-700 delay-300 ${
-            index === current ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          <div className={`absolute inset-0 flex flex-col justify-center items-center text-center px-6 ${
+            index === current ? "opacity-100" : "opacity-0"
           }`}>
-            <h2 className="text-5xl md:text-7xl font-light text-white mb-6 tracking-tight">
+            <h2 className={`text-5xl md:text-7xl font-light text-white mb-6 tracking-tight transition-all duration-700 ${
+              index === current ? "translate-y-0" : "translate-y-8"
+            }`}>
               {slide.title}
             </h2>
-            <p className="text-xl md:text-2xl text-white/90 font-light max-w-2xl">
+            <p className={`text-xl md:text-2xl text-white/90 font-light max-w-2xl transition-all duration-700 delay-200 ${
+              index === current ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            }`}>
               {slide.subtitle}
             </p>
           </div>
         </div>
       ))}
       
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+      {/* Navigation Dots */}
+      <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10 transition-all duration-500 delay-500 ${
+        isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+      }`}>
         {heroSlides.map((_, index) => (
           <button
             key={index}
@@ -247,9 +254,13 @@ function HeroSlider() {
         ))}
       </div>
 
+      {/* Arrow Navigation */}
       <button
         onClick={() => setCurrent((current - 1 + heroSlides.length) % heroSlides.length)}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 z-10"
+        className={`absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 z-10 ${
+          isLoaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
+        }`}
+        style={{ transitionDelay: '600ms' }}
         aria-label="Previous slide"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -258,7 +269,10 @@ function HeroSlider() {
       </button>
       <button
         onClick={() => setCurrent((current + 1) % heroSlides.length)}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 z-10"
+        className={`absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 z-10 ${
+          isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
+        }`}
+        style={{ transitionDelay: '600ms' }}
         aria-label="Next slide"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -266,9 +280,12 @@ function HeroSlider() {
         </svg>
       </button>
 
-      <div className="absolute bottom-8 right-8 flex flex-col items-center gap-2 text-white/50 animate-bounce">
+      {/* Scroll Indicator */}
+      <div className={`absolute bottom-8 right-8 flex flex-col items-center gap-2 text-white/50 transition-all duration-500 delay-700 ${
+        isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+      }`}>
         <span className="text-xs tracking-widest uppercase">Scroll</span>
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-5 h-5 animate-float" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>
       </div>
@@ -277,13 +294,22 @@ function HeroSlider() {
 }
 
 export default function Home() {
+  const [pageLoaded, setPageLoaded] = useState(false);
+
+  useEffect(() => {
+    setPageLoaded(true);
+  }, []);
+
   return (
     <main className="min-h-screen bg-white">
       <Header />
 
       <HeroSlider />
 
-      <AnimatedSection className="py-24 bg-white" delay={100}>
+      {/* Value Prop - Animated on load */}
+      <section className={`py-24 bg-white transition-all duration-700 delay-100 ${
+        pageLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      }`}>
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-light text-[#1a1a1a] mb-8 leading-tight">
             Transformez vos coûts de formation en{' '}
@@ -306,11 +332,14 @@ export default function Home() {
             </svg>
           </Link>
         </div>
-      </AnimatedSection>
+      </section>
 
-      <AnimatedSection className="py-24 bg-[#f8f8f8]" delay={200}>
+      {/* Solutions - Staggered animation */}
+      <section className="py-24 bg-[#f8f8f8]">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className={`text-center mb-16 transition-all duration-700 delay-200 ${
+            pageLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}>
             <h2 className="text-4xl md:text-5xl font-light text-[#1a1a1a] mb-4">
               Nos solutions
             </h2>
@@ -324,7 +353,10 @@ export default function Home() {
               return (
                 <div
                   key={index}
-                  className="group bg-white rounded-2xl p-8 card-hover cursor-pointer border border-transparent hover:border-[#cfd4db]/30"
+                  className={`stagger-item group bg-white rounded-2xl p-8 card-hover cursor-pointer border border-transparent hover:border-[#cfd4db]/30 ${
+                    pageLoaded ? "" : "opacity-0"
+                  }`}
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div className="flex items-start gap-4">
                     <div className="text-[#1a1a1a] mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -350,9 +382,10 @@ export default function Home() {
             })}
           </div>
         </div>
-      </AnimatedSection>
+      </section>
 
-      <AnimatedSection className="py-24 bg-white" delay={300}>
+      {/* 4D Quadra */}
+      <AnimatedSection className="py-24 bg-white" delay={100}>
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-light text-[#1a1a1a] mb-4">
@@ -360,14 +393,13 @@ export default function Home() {
             </h2>
             <p className="text-[#666] max-w-2xl mx-auto">
               La méthodologie Mentivis 4D Quadra est le fondement de notre approche.
-              Elle tire son nom des 4 dimensions essentielles de toute transformation réussie dans l'éducation.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {pillars.map((pillar, index) => (
               <div 
                 key={index} 
-                className="group text-center p-8 bg-[#f8f8f8] rounded-2xl hover:bg-white hover:shadow-lg transition-all duration-300 cursor-pointer"
+                className="stagger-item group text-center p-8 bg-[#f8f8f8] rounded-2xl hover:bg-white hover:shadow-lg transition-all duration-300 cursor-pointer"
               >
                 <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#1a1a1a] text-white flex items-center justify-center text-2xl font-light group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                   {index + 1}
@@ -380,10 +412,11 @@ export default function Home() {
         </div>
       </AnimatedSection>
 
-      <AnimatedSection className="py-20 bg-[#f8f8f8]" delay={400}>
+      {/* Stats */}
+      <AnimatedSection className="py-20 bg-[#f8f8f8]" delay={200}>
         <div className="max-w-4xl mx-auto px-6 text-center">
           <p className="text-2xl text-[#1a1a1a] font-light mb-6">
-            Plus de <span className="font-medium">40 projets</span> stratégiques, organisationnels et pédagogiques en 2025
+            Plus de <span className="font-medium">40 projets</span> stratégiques en 2025
           </p>
           <Link
             href="/a-propos"
@@ -397,7 +430,8 @@ export default function Home() {
         </div>
       </AnimatedSection>
 
-      <AnimatedSection className="py-24 bg-[#1a1a1a]" delay={500}>
+      {/* CTA Banner */}
+      <AnimatedSection className="py-24 bg-[#1a1a1a]" delay={300}>
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-light text-white mb-6">
             Prêt à transformer votre formation ?
@@ -417,7 +451,8 @@ export default function Home() {
         </div>
       </AnimatedSection>
 
-      <AnimatedSection className="py-24 bg-white" delay={600}>
+      {/* Contact Form */}
+      <AnimatedSection className="py-24 bg-white" delay={400}>
         <div className="max-w-2xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-light text-[#1a1a1a] mb-4">
