@@ -1,11 +1,10 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Image from "next/image";
-
-export const metadata = {
-  title: "Mentivis Solutions - Transformation IA & Data",
-  description: "Conseil, ingénierie et transformation digitale. IA générative, données, cloud sovereignain.",
-};
+import Link from "next/link";
 
 const services = [
   {
@@ -57,13 +56,47 @@ const commitments = [
   },
 ];
 
+function AnimatedSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), delay);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [delay]);
+
+  return (
+    <div ref={ref} className={`${isVisible ? 'animate-fade-in-up' : 'opacity-0'} ${className}`}>
+      {children}
+    </div>
+  );
+}
+
 export default function SolutionsPage() {
+  const [pageLoaded, setPageLoaded] = useState(false);
+
+  useEffect(() => {
+    setPageLoaded(true);
+  }, []);
+
   return (
     <main className="min-h-screen bg-white">
       <Header />
       
       {/* Hero with Blue Photo */}
-      <section className="relative h-[60vh] min-h-[400px] pt-24">
+      <section className="relative h-[60vh] min-h-[400px] pt-24 overflow-hidden">
         <Image
           src="https://mentivis.com/wp-content/uploads/2026/03/menti4.webp"
           alt="Mentivis Solutions"
@@ -72,7 +105,9 @@ export default function SolutionsPage() {
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 pb-16">
+        <div className={`absolute bottom-0 left-0 right-0 pb-16 transition-all duration-700 ${
+          pageLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}>
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h1 className="text-4xl md:text-5xl font-light text-white mb-6">
               La transformation digitale, ça se pilote. Ça s'ingénie. Ça dure.
@@ -85,14 +120,20 @@ export default function SolutionsPage() {
       </section>
 
       {/* Services - Light */}
-      <section className="py-20 bg-[#f8f8f8]">
+      <AnimatedSection className="py-20 bg-[#f8f8f8]" delay={100}>
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-light text-[#1a1a1a] mb-12 text-center">
             Nous connaissons votre terrain
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
-              <div key={index} className="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow">
+              <div 
+                key={index} 
+                className={`stagger-item bg-white rounded-xl p-8 hover:shadow-lg transition-shadow ${
+                  pageLoaded ? "" : "opacity-0"
+                }`}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
                 <h3 className="text-xl font-medium text-[#1a1a1a] mb-4">{service.title}</h3>
                 <p className="text-[#666] text-sm font-light leading-relaxed">
                   {service.description}
@@ -101,17 +142,23 @@ export default function SolutionsPage() {
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Commitments - White */}
-      <section className="py-20 bg-white">
+      <AnimatedSection className="py-20 bg-white" delay={200}>
         <div className="max-w-5xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-light text-[#1a1a1a] mb-12 text-center">
             Nos engagements, ce sur quoi vous pouvez compter
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {commitments.map((commitment, index) => (
-              <div key={index} className="bg-[#f8f8f8] rounded-xl p-8">
+              <div 
+                key={index} 
+                className={`stagger-item bg-[#f8f8f8] rounded-xl p-8 ${
+                  pageLoaded ? "" : "opacity-0"
+                }`}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
                 <h3 className="text-xl font-medium text-[#1a1a1a] mb-3">{commitment.title}</h3>
                 <p className="text-[#666] text-sm font-light leading-relaxed">
                   {commitment.description}
@@ -120,10 +167,10 @@ export default function SolutionsPage() {
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Process - Light */}
-      <section className="py-20 bg-[#f8f8f8]">
+      <AnimatedSection className="py-20 bg-[#f8f8f8]" delay={300}>
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-light text-[#1a1a1a] mb-12">
             De la stratégie à la production, sans rupture entre les deux
@@ -158,19 +205,19 @@ export default function SolutionsPage() {
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* CTA - White */}
-      <section className="py-20 bg-white">
+      <AnimatedSection className="py-20 bg-white" delay={400}>
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <a
+          <Link
             href="/contact"
             className="inline-block bg-[#1a1a1a] text-white px-8 py-3 text-sm font-medium rounded-full hover:bg-[#333] transition-colors"
           >
             Parlons de votre projet
-          </a>
+          </Link>
         </div>
-      </section>
+      </AnimatedSection>
 
       <Footer />
     </main>

@@ -1,19 +1,53 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-export const metadata = {
-  title: "Contact - Mentivis",
-  description: "Contactez Mentivis pour vos projets de conseil et transformation éducative.",
-};
+function AnimatedSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), delay);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [delay]);
+
+  return (
+    <div ref={ref} className={`${isVisible ? 'animate-fade-in-up' : 'opacity-0'} ${className}`}>
+      {children}
+    </div>
+  );
+}
 
 export default function ContactPage() {
+  const [pageLoaded, setPageLoaded] = useState(false);
+
+  useEffect(() => {
+    setPageLoaded(true);
+  }, []);
+
   return (
     <main className="min-h-screen bg-white">
       <Header />
       
       {/* Hero - White */}
-      <section className="pt-32 pb-16 bg-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <section className="pt-32 pb-16 bg-white overflow-hidden">
+        <div className={`max-w-4xl mx-auto px-6 text-center transition-all duration-700 delay-100 ${
+          pageLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}>
           <h1 className="text-4xl md:text-5xl font-light text-[#1a1a1a] mb-6">
             Contactez-nous
           </h1>
@@ -24,7 +58,7 @@ export default function ContactPage() {
       </section>
 
       {/* Form - Light */}
-      <section className="py-20 bg-[#f8f8f8]">
+      <AnimatedSection className="py-20 bg-[#f8f8f8]" delay={200}>
         <div className="max-w-2xl mx-auto px-6">
           <form className="space-y-6">
             <div>
@@ -71,10 +105,10 @@ export default function ContactPage() {
             </button>
           </form>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Contact Info - White */}
-      <section className="py-20 bg-white">
+      <AnimatedSection className="py-20 bg-white" delay={300}>
         <div className="max-w-4xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
@@ -94,7 +128,7 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       <Footer />
     </main>

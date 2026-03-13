@@ -1,11 +1,10 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Image from "next/image";
-
-export const metadata = {
-  title: "Expertises Mentivis - Projets stratégiques & expertise éducative",
-  description: "Conseil en éducation et expertise éducative. Analyse stratégique, conformité réglementaire, ingénierie pédagogique.",
-};
+import Link from "next/link";
 
 const capabilities = [
   {
@@ -75,7 +74,7 @@ const capabilities = [
     title: "RH et RSE recrutement du staff",
     items: [
       "Recrutement stratégique : Identification et recrutement des talents alignés avec vos valeurs et objectifs.",
-      "Développement RH : Mise en place de stratégies pour le développement et la fidélisation de votre équipe.",
+      "Développement RH : mise en place de stratégies pour le développement et la fidélisation de votre équipe.",
       "Intégration RSE : Intégration des principes de Responsabilité Sociétale des Entreprises dans votre politique RH.",
       "Suivi des performances : Évaluation continue des équipes et adaptation des pratiques.",
     ],
@@ -89,16 +88,52 @@ const values = [
   { title: "Excellence", description: "Votre Levier d'Excellence. Nous transformons vos ambitions en résultats tangibles." },
 ];
 
+function AnimatedSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), delay);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [delay]);
+
+  return (
+    <div ref={ref} className={`${isVisible ? 'animate-fade-in-up' : 'opacity-0'} ${className}`}>
+      {children}
+    </div>
+  );
+}
+
 export default function ExpertisesPage() {
+  const [pageLoaded, setPageLoaded] = useState(false);
+
+  useEffect(() => {
+    setPageLoaded(true);
+  }, []);
+
   return (
     <main className="min-h-screen bg-white">
       <Header />
       
       {/* Hero - White */}
-      <section className="pt-32 pb-16 bg-white">
+      <section className="pt-32 pb-16 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className={`transition-all duration-700 delay-100 ${
+              pageLoaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+            }`}>
               <h1 className="text-4xl md:text-5xl font-light text-[#1a1a1a] mb-6">
                 Mentivis. Moins de slides, plus d'exécution.
               </h1>
@@ -107,7 +142,9 @@ export default function ExpertisesPage() {
                 L'enjeu n'est pas seulement d'y répondre, mais de savoir en tirer parti pour renforcer la performance et la pérennité.
               </p>
             </div>
-            <div className="relative h-[400px] rounded-xl overflow-hidden">
+            <div className={`relative h-[400px] rounded-xl overflow-hidden transition-all duration-700 delay-300 ${
+              pageLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"
+            }`}>
               <Image
                 src="https://mentivis.com/wp-content/uploads/2026/02/consultantboxb-1536x862.webp"
                 alt="Mentivis Conseil"
@@ -120,14 +157,20 @@ export default function ExpertisesPage() {
       </section>
 
       {/* Capabilities - Light */}
-      <section className="py-20 bg-[#f8f8f8]">
+      <AnimatedSection className="py-20 bg-[#f8f8f8]" delay={100}>
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-light text-[#1a1a1a] mb-12 text-center">
             Nos capacités et compétences
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {capabilities.map((cap, index) => (
-              <div key={index} className="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow">
+              <div 
+                key={index} 
+                className={`stagger-item bg-white rounded-xl p-8 hover:shadow-lg transition-shadow ${
+                  pageLoaded ? "" : "opacity-0"
+                }`}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
                 <h3 className="text-xl font-medium text-[#1a1a1a] mb-4">{cap.title}</h3>
                 <ul className="space-y-3">
                   {cap.items.map((item, i) => (
@@ -140,17 +183,23 @@ export default function ExpertisesPage() {
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Values - White */}
-      <section className="py-20 bg-white">
+      <AnimatedSection className="py-20 bg-white" delay={200}>
         <div className="max-w-5xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-light text-[#1a1a1a] mb-12 text-center">
             Notre approche unique
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
-              <div key={index} className="text-center p-6 bg-[#f8f8f8] rounded-xl">
+              <div 
+                key={index} 
+                className={`stagger-item text-center p-6 bg-[#f8f8f8] rounded-xl ${
+                  pageLoaded ? "" : "opacity-0"
+                }`}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full border border-[#1a1a1a]/20 flex items-center justify-center">
                   <span className="text-2xl font-light text-[#1a1a1a]">{index + 1}</span>
                 </div>
@@ -160,10 +209,10 @@ export default function ExpertisesPage() {
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* CTA - Light */}
-      <section className="py-20 bg-[#f8f8f8]">
+      <AnimatedSection className="py-20 bg-[#f8f8f8]" delay={300}>
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-light text-[#1a1a1a] mb-6">
             Nous nous engageons à transformer votre vision éducative en une institution d'excellence
@@ -171,14 +220,14 @@ export default function ExpertisesPage() {
           <p className="text-[#666] font-light mb-8">
             Prenez rendez-vous pour une consultation stratégique, on s'occupe du reste !
           </p>
-          <a
+          <Link
             href="/contact"
             className="inline-block bg-[#1a1a1a] text-white px-8 py-3 text-sm font-medium rounded-full hover:bg-[#333] transition-colors"
           >
             Contactez-nous
-          </a>
+          </Link>
         </div>
-      </section>
+      </AnimatedSection>
 
       <Footer />
     </main>

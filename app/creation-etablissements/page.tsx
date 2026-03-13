@@ -1,10 +1,9 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
-export const metadata = {
-  title: "Création d'établissements éducatifs - Mentivis",
-  description: "Créez votre établissement éducatif avec Mentivis. Conseil, stratégie et accompagnement complet de la faisabilité à l'ouverture.",
-};
+import Link from "next/link";
 
 const services = [
   {
@@ -32,14 +31,50 @@ const checklist = [
   { title: "Conformité réglementaire", description: "Déclaration d'activité, certification Qualiopi, RNCP" },
 ];
 
+function AnimatedSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), delay);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [delay]);
+
+  return (
+    <div ref={ref} className={`${isVisible ? 'animate-fade-in-up' : 'opacity-0'} ${className}`}>
+      {children}
+    </div>
+  );
+}
+
 export default function CreationEtablissementsPage() {
+  const [pageLoaded, setPageLoaded] = useState(false);
+
+  useEffect(() => {
+    setPageLoaded(true);
+  }, []);
+
   return (
     <main className="min-h-screen bg-white">
       <Header />
       
       {/* Hero - White */}
-      <section className="pt-32 pb-16 bg-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <section className="pt-32 pb-16 bg-white overflow-hidden">
+        <div className={`max-w-4xl mx-auto px-6 text-center transition-all duration-700 delay-100 ${
+          pageLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}>
           <h1 className="text-4xl md:text-5xl font-light text-[#1a1a1a] mb-6">
             Création et lancement de votre établissement éducatif
           </h1>
@@ -50,11 +85,17 @@ export default function CreationEtablissementsPage() {
       </section>
 
       {/* Services - Light */}
-      <section className="py-20 bg-[#f8f8f8]">
+      <AnimatedSection className="py-20 bg-[#f8f8f8]" delay={100}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {services.map((service, index) => (
-              <div key={index} className="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow">
+              <div 
+                key={index} 
+                className={`stagger-item bg-white rounded-xl p-8 hover:shadow-lg transition-shadow ${
+                  pageLoaded ? "" : "opacity-0"
+                }`}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
                 <h3 className="text-xl font-medium text-[#1a1a1a] mb-4">{service.title}</h3>
                 <p className="text-[#666] text-sm font-light leading-relaxed">
                   {service.description}
@@ -63,17 +104,23 @@ export default function CreationEtablissementsPage() {
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Checklist - White */}
-      <section className="py-20 bg-white">
+      <AnimatedSection className="py-20 bg-white" delay={200}>
         <div className="max-w-5xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-light text-[#1a1a1a] mb-12 text-center">
             Checklist pour créer un établissement de formation ou un CFA avec Mentivis
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {checklist.map((item, index) => (
-              <div key={index} className="text-center p-6 bg-[#f8f8f8] rounded-xl">
+              <div 
+                key={index} 
+                className={`stagger-item text-center p-6 bg-[#f8f8f8] rounded-xl ${
+                  pageLoaded ? "" : "opacity-0"
+                }`}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
                 <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-[#1a1a1a] text-white flex items-center justify-center font-medium">
                   {index + 1}
                 </div>
@@ -83,10 +130,10 @@ export default function CreationEtablissementsPage() {
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Accompaniment - Light */}
-      <section className="py-20 bg-[#f8f8f8]">
+      <AnimatedSection className="py-20 bg-[#f8f8f8]" delay={300}>
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-3xl font-light text-[#1a1a1a] mb-8 text-center">
             L'accompagnement par Mentivis
@@ -110,10 +157,10 @@ export default function CreationEtablissementsPage() {
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* CTA - White */}
-      <section className="py-20 bg-white">
+      <AnimatedSection className="py-20 bg-white" delay={400}>
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-light text-[#1a1a1a] mb-6">
             Parlons de votre projet
@@ -121,14 +168,14 @@ export default function CreationEtablissementsPage() {
           <p className="text-[#666] font-light mb-8">
             Vous avez un projet de création d'école, de centre de formation, de CFA ?
           </p>
-          <a
+          <Link
             href="/contact"
             className="inline-block bg-[#1a1a1a] text-white px-8 py-3 text-sm font-medium rounded-full hover:bg-[#333] transition-colors"
           >
             Contactez-nous
-          </a>
+          </Link>
         </div>
-      </section>
+      </AnimatedSection>
 
       <Footer />
     </main>

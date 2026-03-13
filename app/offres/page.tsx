@@ -1,11 +1,10 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Image from "next/image";
-
-export const metadata = {
-  title: "Offres Mentivis - Conseil et Transformation Éducative",
-  description: "Conseil et transformation éducative. Talent OS, Corporate Campus, Skills Factory, Education Rescue, Investor Lab.",
-};
+import Link from "next/link";
 
 const solutions = [
   {
@@ -59,13 +58,47 @@ const pillars = [
   { title: "Accompagnement humain", description: "Change management des équipes et apprenants" },
 ];
 
+function AnimatedSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), delay);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [delay]);
+
+  return (
+    <div ref={ref} className={`${isVisible ? 'animate-fade-in-up' : 'opacity-0'} ${className}`}>
+      {children}
+    </div>
+  );
+}
+
 export default function OffresPage() {
+  const [pageLoaded, setPageLoaded] = useState(false);
+
+  useEffect(() => {
+    setPageLoaded(true);
+  }, []);
+
   return (
     <main className="min-h-screen bg-white">
       <Header />
       
       {/* Hero with Yellow Photo */}
-      <section className="relative h-[60vh] min-h-[400px] pt-24">
+      <section className="relative h-[60vh] min-h-[400px] pt-24 overflow-hidden">
         <Image
           src="https://mentivis.com/wp-content/uploads/2025/11/theyellowblob.webp"
           alt="Mentivis Offres"
@@ -74,7 +107,9 @@ export default function OffresPage() {
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 pb-16">
+        <div className={`absolute bottom-0 left-0 right-0 pb-16 transition-all duration-700 ${
+          pageLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}>
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h1 className="text-4xl md:text-5xl font-light text-white mb-6">
               Les offres consulting & déploiement
@@ -87,7 +122,7 @@ export default function OffresPage() {
       </section>
 
       {/* Solutions - Light */}
-      <section className="py-20 bg-[#f8f8f8]">
+      <AnimatedSection className="py-20 bg-[#f8f8f8]" delay={100}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-light text-[#1a1a1a] mb-4">
@@ -98,7 +133,10 @@ export default function OffresPage() {
             {solutions.map((solution, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow"
+                className={`stagger-item bg-white rounded-xl p-8 hover:shadow-lg transition-shadow ${
+                  pageLoaded ? "" : "opacity-0"
+                }`}
+                style={{ animationDelay: `${index * 100}ms` }}
               >
                 <h3 className="text-xl font-medium text-[#1a1a1a] mb-2">{solution.title}</h3>
                 <p className="text-[#666] text-sm font-light mb-4">{solution.subtitle}</p>
@@ -112,10 +150,10 @@ export default function OffresPage() {
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* 4D Quadra - White */}
-      <section className="py-20 bg-white">
+      <AnimatedSection className="py-20 bg-white" delay={200}>
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-light text-[#1a1a1a] mb-4">
@@ -128,7 +166,13 @@ export default function OffresPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {pillars.map((pillar, index) => (
-              <div key={index} className="text-center p-6 bg-[#f8f8f8] rounded-xl">
+              <div 
+                key={index} 
+                className={`stagger-item text-center p-6 bg-[#f8f8f8] rounded-xl ${
+                  pageLoaded ? "" : "opacity-0"
+                }`}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full border border-[#1a1a1a]/20 flex items-center justify-center">
                   <span className="text-2xl font-light text-[#1a1a1a]">{index + 1}</span>
                 </div>
@@ -138,23 +182,23 @@ export default function OffresPage() {
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* CTA - Light */}
-      <section className="py-20 bg-[#f8f8f8]">
+      <AnimatedSection className="py-20 bg-[#f8f8f8]" delay={300}>
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-light text-[#1a1a1a] mb-6">Contactez-nous</h2>
           <p className="text-[#666] font-light mb-8">
             Notre promesse : Un premier échange stratégique offert pour comprendre vos enjeux et identifier les leviers de valeur prioritaires.
           </p>
-          <a
+          <Link
             href="/contact"
             className="inline-block bg-[#1a1a1a] text-white px-8 py-3 text-sm font-medium rounded-full hover:bg-[#333] transition-colors"
           >
             Planifier une consultation
-          </a>
+          </Link>
         </div>
-      </section>
+      </AnimatedSection>
 
       <Footer />
     </main>
