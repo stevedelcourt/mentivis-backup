@@ -78,9 +78,9 @@ export default function Header() {
               } ${pathname === item.href ? (menuTextWhite ? "text-white" : "text-[#1a1a1a]") : ""}`}
             >
               {item.label}
-              <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${
+              <span className={`absolute -bottom-1 left-0 h-0.5 transition-all duration-300 ${
                 pathname === item.href ? "w-full" : "w-0 group-hover:w-full"
-              }`} />
+              } ${menuTextWhite ? "bg-white" : "bg-[#1a1a1a]"}`} />
             </Link>
           ))}
         </nav>
