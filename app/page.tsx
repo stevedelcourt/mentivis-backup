@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const IMAGES = {
   logo: "https://mentivis.com/wp-content/uploads/2024/12/logo_noir300.png",
@@ -119,12 +121,11 @@ function HeroSlider() {
             className="object-cover"
             priority={index === 0}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/90 via-[#1a1a1a]/50 to-[#1a1a1a]/30" />
           <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6">
-            <h2 className="text-4xl md:text-6xl font-light text-white mb-4">
+            <h2 className="text-4xl md:text-6xl font-light text-white mb-4 drop-shadow-lg">
               {slide.title}
             </h2>
-            <p className="text-xl md:text-2xl text-[#cfd4db] font-light">
+            <p className="text-xl md:text-2xl text-white/90 font-light drop-shadow-md">
               {slide.subtitle}
             </p>
           </div>
@@ -163,33 +164,7 @@ function HeroSlider() {
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#1a1a1a]">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#1a1a1a]/95 backdrop-blur-sm border-b border-[#cfd4db]/10">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="/" className="flex items-center">
-            <Image
-              src={IMAGES.logoWhite}
-              alt="Mentivis"
-              width={120}
-              height={40}
-              className="h-10 w-auto brightness-0 invert"
-            />
-          </a>
-          <nav className="hidden md:flex items-center gap-8">
-            <a href="#" className="text-white/80 hover:text-[#cfd4db] text-sm font-light transition-colors">Accueil</a>
-            <a href="#solutions" className="text-white/80 hover:text-[#cfd4db] text-sm font-light transition-colors">Solutions</a>
-            <a href="#contact" className="text-white/80 hover:text-[#cfd4db] text-sm font-light transition-colors">Contact</a>
-          </nav>
-          <div className="flex items-center gap-4">
-            <span className="text-xs text-[#cfd4db]">FR</span>
-            <span className="text-xs text-white/40">|</span>
-            <a href="#" className="text-xs text-white/60 hover:text-[#cfd4db] transition-colors">EN</a>
-            <a href="#contact" className="bg-[#cfd4db] text-[#1a1a1a] px-5 py-2 text-sm font-medium rounded-full hover:bg-[#a8aeb8] transition-colors">
-              Contact
-            </a>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Slider */}
       <HeroSlider />
@@ -340,65 +315,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-16 bg-[#1a1a1a] border-t border-[#cfd4db]/10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-            <div>
-              <Image
-                src={IMAGES.logoWhite}
-                alt="Mentivis"
-                width={120}
-                height={40}
-                className="h-10 w-auto brightness-0 invert mb-4"
-              />
-              <p className="text-[#cfd4db] text-sm font-light">
-                Conseil, stratégie et performance
-              </p>
-            </div>
-            <div>
-              <h4 className="text-white font-medium mb-4">Contact</h4>
-              <p className="text-white/60 text-sm font-light">
-                <a href="mailto:contact@mentivis.com" className="hover:text-[#cfd4db] transition-colors">
-                  contact@mentivis.com
-                </a>
-              </p>
-              <p className="text-white/60 text-sm font-light mt-2">
-                60 Rue François 1er<br />
-                75008 Paris
-              </p>
-            </div>
-            <div>
-              <h4 className="text-white font-medium mb-4">Newsletter</h4>
-              <form className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="Votre email"
-                  className="flex-1 px-4 py-2 bg-[#2d2d2d] border border-[#cfd4db]/20 rounded-lg text-white text-sm focus:outline-none focus:border-[#cfd4db] transition-colors font-light"
-                />
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-[#cfd4db] text-[#1a1a1a] rounded-lg text-sm font-medium hover:bg-[#a8aeb8] transition-colors"
-                >
-                  S'abonner
-                </button>
-              </form>
-            </div>
-          </div>
-          <div className="border-t border-[#cfd4db]/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-white/40 text-xs font-light">
-              © 2026 Mentivis. Tous droits réservés.
-            </p>
-            <div className="flex gap-6">
-              <a href="#" className="text-white/40 hover:text-[#cfd4db] text-xs font-light transition-colors">
-                Mentions légales
-              </a>
-              <a href="#" className="text-white/40 hover:text-[#cfd4db] text-xs font-light transition-colors">
-                Confidentialité
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }
