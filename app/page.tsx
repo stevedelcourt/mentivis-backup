@@ -1,7 +1,11 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const IMAGES = {
   logo: "https://mentivis.com/wp-content/uploads/2024/12/logo_noir300.png",
+  logoWhite: "https://mentivis.com/wp-content/uploads/2024/12/logo_noir300.png",
   office: "https://mentivis.com/wp-content/uploads/2026/01/officez-1536x1024.webp",
   woman: "https://mentivis.com/wp-content/uploads/2024/11/dark_woman-1536x1198.webp",
   menti4: "https://mentivis.com/wp-content/uploads/2026/03/menti4-1536x1030.webp",
@@ -9,35 +13,31 @@ const IMAGES = {
   team: "https://mentivis.com/wp-content/uploads/2024/11/pexels-divinetechygirl-1181712-1-1024x683.jpg",
 };
 
-const offerings = [
+const heroSlides = [
   {
     title: "Talent OS",
     subtitle: "Pilotez par les compétences et non par la hiérarchie",
-    link: "#",
+    image: IMAGES.office,
   },
   {
     title: "Pôle formation",
     subtitle: "Votre campus corporate, clé en main",
     image: IMAGES.woman,
-    link: "#",
   },
   {
     title: "Mentivis Solutions",
     subtitle: "Conseil, Applicatif & Systèmes",
     image: IMAGES.menti4,
-    link: "#",
   },
   {
     title: "Education Rescue",
     subtitle: "Redressement rapide et optimisation des coûts",
     image: IMAGES.team,
-    link: "#",
   },
   {
     title: "Investor Lab",
     subtitle: "Sécuriser votre plan et vos fonds éducation",
     image: IMAGES.investor,
-    link: "#",
   },
 ];
 
@@ -93,6 +93,73 @@ const pillars = [
   { title: "Accompagnement humain", description: "Change management des équipes et apprenants" },
 ];
 
+function HeroSlider() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
+      {heroSlides.map((slide, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            index === current ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Image
+            src={slide.image}
+            alt={slide.title}
+            fill
+            className="object-cover"
+            priority={index === 0}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/90 via-[#1a1a1a]/50 to-[#1a1a1a]/30" />
+          <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6">
+            <h2 className="text-4xl md:text-6xl font-light text-white mb-4">
+              {slide.title}
+            </h2>
+            <p className="text-xl md:text-2xl text-[#cfd4db] font-light">
+              {slide.subtitle}
+            </p>
+          </div>
+        </div>
+      ))}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
+        {heroSlides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrent(index)}
+            className={`w-3 h-3 rounded-full transition-colors ${
+              index === current ? "bg-[#cfd4db]" : "bg-white/30"
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+      <button
+        onClick={() => setCurrent((current - 1 + heroSlides.length) % heroSlides.length)}
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+        aria-label="Previous slide"
+      >
+        ←
+      </button>
+      <button
+        onClick={() => setCurrent((current + 1) % heroSlides.length)}
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+        aria-label="Next slide"
+      >
+        →
+      </button>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#1a1a1a]">
@@ -101,16 +168,15 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <a href="/" className="flex items-center">
             <Image
-              src={IMAGES.logo}
+              src={IMAGES.logoWhite}
               alt="Mentivis"
               width={120}
               height={40}
-              className="h-10 w-auto"
+              className="h-10 w-auto brightness-0 invert"
             />
           </a>
           <nav className="hidden md:flex items-center gap-8">
-            <a href="/" className="text-white/80 hover:text-[#cfd4db] text-sm font-light transition-colors">Accueil</a>
-            <a href="#offres" className="text-white/80 hover:text-[#cfd4db] text-sm font-light transition-colors">Offres</a>
+            <a href="#" className="text-white/80 hover:text-[#cfd4db] text-sm font-light transition-colors">Accueil</a>
             <a href="#solutions" className="text-white/80 hover:text-[#cfd4db] text-sm font-light transition-colors">Solutions</a>
             <a href="#contact" className="text-white/80 hover:text-[#cfd4db] text-sm font-light transition-colors">Contact</a>
           </nav>
@@ -125,36 +191,8 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="pt-24">
-        <div className="max-w-7xl mx-auto px-6 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {offerings.map((item, index) => (
-              <a
-                key={index}
-                href={item.link}
-                className="group relative overflow-hidden rounded-xl aspect-[4/3] bg-[#2d2d2d]"
-              >
-                {item.image ? (
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#2d2d2d] to-[#1a1a1a]" />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/90 via-[#1a1a1a]/40 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="text-xl font-medium text-white mb-1">{item.title}</h3>
-                  <p className="text-sm text-[#cfd4db] font-light">{item.subtitle}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Hero Slider */}
+      <HeroSlider />
 
       {/* Main Value Prop */}
       <section className="py-20 bg-[#2d2d2d]">
@@ -307,11 +345,11 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div>
               <Image
-                src={IMAGES.logo}
+                src={IMAGES.logoWhite}
                 alt="Mentivis"
                 width={120}
                 height={40}
-                className="h-10 w-auto mb-4"
+                className="h-10 w-auto brightness-0 invert mb-4"
               />
               <p className="text-[#cfd4db] text-sm font-light">
                 Conseil, stratégie et performance
