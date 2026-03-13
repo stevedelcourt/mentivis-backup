@@ -1,65 +1,366 @@
 import Image from "next/image";
 
+const IMAGES = {
+  logo: "https://mentivis.com/wp-content/uploads/2024/12/logo_noir300.png",
+  office: "https://mentivis.com/wp-content/uploads/2026/01/officez-1536x1024.webp",
+  woman: "https://mentivis.com/wp-content/uploads/2024/11/dark_woman-1536x1198.webp",
+  menti4: "https://mentivis.com/wp-content/uploads/2026/03/menti4-1536x1030.webp",
+  investor: "https://mentivis.com/wp-content/uploads/2026/03/investor-1536x1024.webp",
+  team: "https://mentivis.com/wp-content/uploads/2024/11/pexels-divinetechygirl-1181712-1-1024x683.jpg",
+};
+
+const offerings = [
+  {
+    title: "Talent OS",
+    subtitle: "Pilotez par les compétences et non par la hiérarchie",
+    link: "#",
+  },
+  {
+    title: "Pôle formation",
+    subtitle: "Votre campus corporate, clé en main",
+    image: IMAGES.woman,
+    link: "#",
+  },
+  {
+    title: "Mentivis Solutions",
+    subtitle: "Conseil, Applicatif & Systèmes",
+    image: IMAGES.menti4,
+    link: "#",
+  },
+  {
+    title: "Education Rescue",
+    subtitle: "Redressement rapide et optimisation des coûts",
+    image: IMAGES.team,
+    link: "#",
+  },
+  {
+    title: "Investor Lab",
+    subtitle: "Sécuriser votre plan et vos fonds éducation",
+    image: IMAGES.investor,
+    link: "#",
+  },
+];
+
+const solutions = [
+  {
+    title: "TALENT OS",
+    subtitle: "Pilotez par les compétences, pas par l'organigramme",
+    description: "Les fiches de poste figées dans le marbre. Les talents cachés qui s'ignorent. Les compétences critiques que vous ne pouvez pas recruter.",
+    impact: "–40% de délais de recrutement • Mobilité interne multipliée par 3 • Zéro dépendance aux pénuries de talents",
+  },
+  {
+    title: "SKILLS FACTORY",
+    subtitle: "Un référentiel vivant qui parle à toute l'entreprise",
+    description: "Le RH dit « autonomie », le manager dit « débrouillardise », le candidat comprend « démerde-toi ». Résultat : incompréhensions, mauvais recrutements.",
+    impact: "Un seul référentiel • Utilisé partout • Toujours à jour • Enfin compris par tous",
+  },
+  {
+    title: "TRANSITION WORKFORCE",
+    subtitle: "Transformez sans casse. C'est possible.",
+    description: "Fermeture de site. Digitalisation brutale. Réorganisation. Le mot « plan social » plane dans les couloirs.",
+    impact: "90% de reclassement interne • Climat social préservé • Transformation accélérée de 6 mois",
+  },
+  {
+    title: "CORPORATE CAMPUS",
+    subtitle: "Votre campus interne, clé en main",
+    description: "Vous formez beaucoup mais ça part dans tous les sens. Vous rêvevez d'avoir votre propre école.",
+    impact: "Une machine à produire les talents dont vous avez besoin • 100% adaptés à votre culture",
+  },
+  {
+    title: "ROI FORMATION",
+    subtitle: "Et si votre formation générait du cash ?",
+    description: "Votre académie coûte cher. Très cher. Les budgets formation explosent. Le COMEX vous regarde bizarrement.",
+    impact: "Formation autofinancée voire profitable • Budget formation multiplié par 2 sans demander un euro de plus",
+  },
+  {
+    title: "EDUCATION RESCUE",
+    subtitle: "Redressement d'école : du rouge au vert",
+    description: "Inscriptions en chute libre. Réputation ternie. Équilibre financier fragile.",
+    impact: "Augmentations d'inscriptions significatives • Rentabilité restaurée • Diplômés qui trouvent un job",
+  },
+  {
+    title: "INVESTOR EDUCATION LAB",
+    subtitle: "Investir dans l'éducation en connaissance de cause",
+    description: "Cette école a du potentiel. Mais est-ce que le business model tient la route ? Les diplômes ont-ils de la valeur ?",
+    impact: "Décision éclairée • Risques maîtrisés • Plan d'action jour 1 prêt",
+  },
+];
+
+const pillars = [
+  { title: "Vision stratégique", description: "Alignement avec vos objectifs d'établissement" },
+  { title: "Excellence pédagogique", description: "Innovation dans les méthodes d'enseignement" },
+  { title: "Efficacité technologique", description: "Outils digitaux au service de l'apprentissage" },
+  { title: "Accompagnement humain", description: "Change management des équipes et apprenants" },
+];
+
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <main className="min-h-screen bg-[#1a1a1a]">
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#1a1a1a]/95 backdrop-blur-sm border-b border-[#cfd4db]/10">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <a href="/" className="flex items-center">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src={IMAGES.logo}
+              alt="Mentivis"
+              width={120}
+              height={40}
+              className="h-10 w-auto"
             />
-            Deploy Now
           </a>
+          <nav className="hidden md:flex items-center gap-8">
+            <a href="/" className="text-white/80 hover:text-[#cfd4db] text-sm font-light transition-colors">Accueil</a>
+            <a href="#offres" className="text-white/80 hover:text-[#cfd4db] text-sm font-light transition-colors">Offres</a>
+            <a href="#solutions" className="text-white/80 hover:text-[#cfd4db] text-sm font-light transition-colors">Solutions</a>
+            <a href="#contact" className="text-white/80 hover:text-[#cfd4db] text-sm font-light transition-colors">Contact</a>
+          </nav>
+          <div className="flex items-center gap-4">
+            <span className="text-xs text-[#cfd4db]">FR</span>
+            <span className="text-xs text-white/40">|</span>
+            <a href="#" className="text-xs text-white/60 hover:text-[#cfd4db] transition-colors">EN</a>
+            <a href="#contact" className="bg-[#cfd4db] text-[#1a1a1a] px-5 py-2 text-sm font-medium rounded-full hover:bg-[#a8aeb8] transition-colors">
+              Contact
+            </a>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="pt-24">
+        <div className="max-w-7xl mx-auto px-6 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {offerings.map((item, index) => (
+              <a
+                key={index}
+                href={item.link}
+                className="group relative overflow-hidden rounded-xl aspect-[4/3] bg-[#2d2d2d]"
+              >
+                {item.image ? (
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#2d2d2d] to-[#1a1a1a]" />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/90 via-[#1a1a1a]/40 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h3 className="text-xl font-medium text-white mb-1">{item.title}</h3>
+                  <p className="text-sm text-[#cfd4db] font-light">{item.subtitle}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Main Value Prop */}
+      <section className="py-20 bg-[#2d2d2d]">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-light text-white mb-6">
+            Transformez vos coûts de formation en levier de croissance profitable
+          </h2>
+          <p className="text-lg text-[#cfd4db] font-light mb-8 leading-relaxed">
+            Talent OS cartographie vos compétences, conçoit vos Campus internes certifiants et mobilise les financements (OPCO, dispositifs publics) pour un impact business mesurable.
+          </p>
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contact"
+            className="inline-block bg-[#cfd4db] text-[#1a1a1a] px-8 py-3 text-sm font-medium rounded-full hover:bg-[#a8aeb8] transition-colors"
           >
-            Documentation
+            Obtenir un diagnostic ROI gratuit
           </a>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Solutions */}
+      <section id="solutions" className="py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-light text-white mb-4">
+              Nos solutions. Transformez vos compétences en avantage stratégique
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {solutions.map((solution, index) => (
+              <div
+                key={index}
+                className="bg-[#2d2d2d] rounded-xl p-8 hover:bg-[#363636] transition-colors"
+              >
+                <h3 className="text-xl font-medium text-white mb-2">{solution.title}</h3>
+                <p className="text-[#cfd4db] text-sm font-light mb-4">{solution.subtitle}</p>
+                <p className="text-white/70 text-sm font-light mb-6 leading-relaxed">
+                  {solution.description}
+                </p>
+                <div className="border-t border-[#cfd4db]/20 pt-4">
+                  <p className="text-[#cfd4db] text-xs font-light">{solution.impact}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4D Quadra */}
+      <section className="py-20 bg-[#2d2d2d]">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-light text-white mb-4">
+              Pourquoi 4D Quadra ?
+            </h2>
+            <p className="text-[#cfd4db] font-light max-w-2xl mx-auto">
+              La méthodologie Mentivis 4D Quadra est le fondement de notre approche.
+              Elle tire son nom des 4 dimensions essentielles de toute transformation réussie dans l'éducation.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {pillars.map((pillar, index) => (
+              <div key={index} className="text-center p-6">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full border border-[#cfd4db]/30 flex items-center justify-center">
+                  <span className="text-2xl font-light text-[#cfd4db]">{index + 1}</span>
+                </div>
+                <h3 className="text-white font-medium mb-2">{pillar.title}</h3>
+                <p className="text-white/60 text-sm font-light">{pillar.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="py-16 bg-[#1a1a1a]">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <p className="text-[#cfd4db] font-light mb-4">
+            Plus de 40 projets stratégiques, organisationnels et pédagogiques en 2025
+          </p>
+          <a
+            href="#contact"
+            className="text-white hover:text-[#cfd4db] transition-colors underline underline-offset-4"
+          >
+            Pourquoi Mentivis
+          </a>
+        </div>
+      </section>
+
+      {/* Contact Form */}
+      <section id="contact" className="py-20 bg-[#2d2d2d]">
+        <div className="max-w-2xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-light text-white mb-4">
+              Contactez-nous
+            </h2>
+            <p className="text-[#cfd4db] font-light">
+              Envie de parler avec nous ? Nous sommes là pour vous écouter.
+            </p>
+          </div>
+          <form className="space-y-6">
+            <div>
+              <label htmlFor="name" className="block text-sm text-white/70 mb-2 font-light">
+                Nom
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#cfd4db]/20 rounded-lg text-white focus:outline-none focus:border-[#cfd4db] transition-colors font-light"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm text-white/70 mb-2 font-light">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#cfd4db]/20 rounded-lg text-white focus:outline-none focus:border-[#cfd4db] transition-colors font-light"
+              />
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-sm text-white/70 mb-2 font-light">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows={5}
+                required
+                className="w-full px-4 py-3 bg-[#1a1a1a] border border-[#cfd4db]/20 rounded-lg text-white focus:outline-none focus:border-[#cfd4db] transition-colors font-light resize-none"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-[#cfd4db] text-[#1a1a1a] py-3 rounded-lg font-medium hover:bg-[#a8aeb8] transition-colors"
+            >
+              Envoyer
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-16 bg-[#1a1a1a] border-t border-[#cfd4db]/10">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            <div>
+              <Image
+                src={IMAGES.logo}
+                alt="Mentivis"
+                width={120}
+                height={40}
+                className="h-10 w-auto mb-4"
+              />
+              <p className="text-[#cfd4db] text-sm font-light">
+                Conseil, stratégie et performance
+              </p>
+            </div>
+            <div>
+              <h4 className="text-white font-medium mb-4">Contact</h4>
+              <p className="text-white/60 text-sm font-light">
+                <a href="mailto:contact@mentivis.com" className="hover:text-[#cfd4db] transition-colors">
+                  contact@mentivis.com
+                </a>
+              </p>
+              <p className="text-white/60 text-sm font-light mt-2">
+                60 Rue François 1er<br />
+                75008 Paris
+              </p>
+            </div>
+            <div>
+              <h4 className="text-white font-medium mb-4">Newsletter</h4>
+              <form className="flex gap-2">
+                <input
+                  type="email"
+                  placeholder="Votre email"
+                  className="flex-1 px-4 py-2 bg-[#2d2d2d] border border-[#cfd4db]/20 rounded-lg text-white text-sm focus:outline-none focus:border-[#cfd4db] transition-colors font-light"
+                />
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-[#cfd4db] text-[#1a1a1a] rounded-lg text-sm font-medium hover:bg-[#a8aeb8] transition-colors"
+                >
+                  S'abonner
+                </button>
+              </form>
+            </div>
+          </div>
+          <div className="border-t border-[#cfd4db]/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-white/40 text-xs font-light">
+              © 2026 Mentivis. Tous droits réservés.
+            </p>
+            <div className="flex gap-6">
+              <a href="#" className="text-white/40 hover:text-[#cfd4db] text-xs font-light transition-colors">
+                Mentions légales
+              </a>
+              <a href="#" className="text-white/40 hover:text-[#cfd4db] text-xs font-light transition-colors">
+                Confidentialité
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
   );
 }
